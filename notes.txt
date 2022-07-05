@@ -1,0 +1,3 @@
+Static WWW server
+
+jwebserver -p 9000 -d ~/Workshops/Java_Modern/wwwroot

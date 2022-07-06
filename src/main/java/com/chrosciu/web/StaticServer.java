@@ -10,7 +10,7 @@ public class StaticServer {
     public static void main(String[] args) {
         var server = SimpleFileServer.createFileServer(
             new InetSocketAddress(8080),
-            Path.of("/Users/chma/Workshops/Java_Modern/wwwroot"),
+            ServerUtils.getResourcePath("static"),
             OutputLevel.VERBOSE);
         server.start();
 

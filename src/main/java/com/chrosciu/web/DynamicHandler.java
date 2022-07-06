@@ -40,7 +40,21 @@ public class DynamicHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         var requestPath = exchange.getRequestURI().getPath();
         var response = getResponse(requestPath);
-        ServerUtils.sendStringResponseBody(exchange, response);
+        var indent = getIndent(exchange);
+        var indentedResponse = response.indent(indent);
+        ServerUtils.sendStringResponseBody(exchange, indentedResponse);
+    }
+
+    private int getIndent(HttpExchange exchange) {
+        var query = exchange.getRequestURI().getQuery();
+        var indent = 0;
+        if (query != null) {
+            try {
+                indent = Integer.parseInt(query);
+            } catch (NumberFormatException e) {
+            }
+        }
+        return indent;
     }
 
     private String getResponse(String requestPath) {

@@ -1,5 +1,5 @@
 package com.chrosciu.geometry;
 
-public interface Shape {
+public sealed interface Shape permits Polygon, Circle {
     double getArea();
 }
